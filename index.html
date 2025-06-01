@@ -680,69 +680,70 @@ TIME ONLY
              </div>                                               </footer>
 
                 
-                                                            <script>
-                                                                window.onload = function () {
-                                                                  // Set or retrieve 15-hour target time
-                                                                  let targetTime = localStorage.getItem('countdownTargetTime');
-                                                                  if (!targetTime) {
-                                                                    const now = new Date();
-                                                                    now.setHours(now.getHours() + 15);
-                                                                    targetTime = now.getTime();
-                                                                    localStorage.setItem('countdownTargetTime', targetTime);
-                                                                  } else {
-                                                                    targetTime = parseInt(targetTime);
-                                                                  }
-                                                              
-                                                                  function getTimeLeft() {
-                                                                    const now = Date.now();
-                                                                    return Math.max(0, Math.floor((targetTime - now) / 1000));
-                                                                  }
-                                                              
-                                                                  // Timer 1 — Update all .time elements
-                                                                  function updateTimer1() {
-                                                                    const timeLeft = getTimeLeft();
-                                                                    const hours = Math.floor(timeLeft / 3600);
-                                                                    const minutes = Math.floor((timeLeft % 3600) / 60);
-                                                                    const seconds = timeLeft % 60;
-                                                              
-                                                                    const formatted =
-                                                                      String(hours).padStart(2, '0') + ":" +
-                                                                      String(minutes).padStart(2, '0') + ":" +
-                                                                      String(seconds).padStart(2, '0');
-                                                              
-                                                                    const timeElements = document.querySelectorAll(".time");
-                                                                    timeElements.forEach(el => {
-                                                                      el.textContent = formatted;
-                                                                    });
-                                                              
-                                                                    if (timeLeft <= 0) clearInterval(interval1);
-                                                                  }
-                                                              
-                                                                  // Timer 2 — #hours, #minutes, #seconds
-                                                                  function updateTimer2() {
-                                                                    const timeLeft = getTimeLeft();
-                                                                    const hours = Math.floor(timeLeft / 3600);
-                                                                    const minutes = Math.floor((timeLeft % 3600) / 60);
-                                                                    const seconds = timeLeft % 60;
-                                                              
-                                                                    const hoursEl = document.getElementById('hours');
-                                                                    const minutesEl = document.getElementById('minutes');
-                                                                    const secondsEl = document.getElementById('seconds');
-                                                              
-                                                                    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-                                                                    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
-                                                                    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
-                                                              
-                                                                    if (timeLeft <= 0) clearInterval(interval2);
-                                                                  }
-                                                              
-                                                                  // Start timers
-                                                                  updateTimer1();
-                                                                  updateTimer2();
-                                                                  const interval1 = setInterval(updateTimer1, 1000);
-                                                                  const interval2 = setInterval(updateTimer2, 1000);
-                                                                };
-                                                              </script>
+             <script>
+                window.onload = function () {
+                  // Set or retrieve 8-hour target time
+                  let targetTime = localStorage.getItem('countdownTargetTime');
+                  if (!targetTime) {
+                    const now = new Date();
+                    now.setHours(now.getHours() + 8); // Changed from 15 to 8 hours
+                    targetTime = now.getTime();
+                    localStorage.setItem('countdownTargetTime', targetTime);
+                  } else {
+                    targetTime = parseInt(targetTime);
+                  }
+              
+                  function getTimeLeft() {
+                    const now = Date.now();
+                    return Math.max(0, Math.floor((targetTime - now) / 1000));
+                  }
+              
+                  // Timer 1 — Update all .time elements
+                  function updateTimer1() {
+                    const timeLeft = getTimeLeft();
+                    const hours = Math.floor(timeLeft / 3600);
+                    const minutes = Math.floor((timeLeft % 3600) / 60);
+                    const seconds = timeLeft % 60;
+              
+                    const formatted =
+                      String(hours).padStart(2, '0') + ":" +
+                      String(minutes).padStart(2, '0') + ":" +
+                      String(seconds).padStart(2, '0');
+              
+                    const timeElements = document.querySelectorAll(".time");
+                    timeElements.forEach(el => {
+                      el.textContent = formatted;
+                    });
+              
+                    if (timeLeft <= 0) clearInterval(interval1);
+                  }
+              
+                  // Timer 2 — #hours, #minutes, #seconds
+                  function updateTimer2() {
+                    const timeLeft = getTimeLeft();
+                    const hours = Math.floor(timeLeft / 3600);
+                    const minutes = Math.floor((timeLeft % 3600) / 60);
+                    const seconds = timeLeft % 60;
+              
+                    const hoursEl = document.getElementById('hours');
+                    const minutesEl = document.getElementById('minutes');
+                    const secondsEl = document.getElementById('seconds');
+              
+                    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+              
+                    if (timeLeft <= 0) clearInterval(interval2);
+                  }
+              
+                  // Start timers
+                  updateTimer1();
+                  updateTimer2();
+                  const interval1 = setInterval(updateTimer1, 1000);
+                  const interval2 = setInterval(updateTimer2, 1000);
+                };
+              </script>
+              
                                                                                                        
   
 </body>
